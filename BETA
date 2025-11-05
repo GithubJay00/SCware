@@ -4,7 +4,7 @@ local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 --()Bypasses()--
 if game.PlaceId == 6361937392 or game.PlaceId == 6356763358 or game.PlaceId == 11515893037 or game.PlaceId == 13594360346 then
-	print("bypassed")
+	
 	local ReplicatedFirst = game:GetService("ReplicatedFirst")
 	local sm = ReplicatedFirst:FindFirstChild("Static"):FindFirstChild("Superman")
 	local Stats1 = ReplicatedFirst:FindFirstChild("Prod"):FindFirstChild("Stats")
@@ -162,7 +162,7 @@ local Window = Rayfield:CreateWindow({
 
 
 
-local MainTab = Window:CreateTab("Main📃", nil) -- Title, Image
+local MainTab = Window:CreateTab("Main |📃", nil) -- Title, Image
 
 
 
@@ -438,7 +438,7 @@ RunService.Stepped:Connect(function()
 							local Handle = tool and tool:FindFirstChild("Handle")
 							
 							if tool and Handle then
-								print("legit amp mode")
+								
 								for _, hit in pairs(Handle:GetTouchingParts()) do
 									if hit == Whitelist() then
 										for _, Child in pairs(qChar:GetChildren()) do
@@ -594,7 +594,7 @@ getgenv().Settings2 = {
 
 
 
-local PlayerTab = Window:CreateTab("Player🚹", nil) -- Title, Image
+local PlayerTab = Window:CreateTab("Player |🚹", nil) -- Title, Image
 
 
 local LungeBotSection = PlayerTab:CreateSection("LungeBot")
@@ -639,7 +639,7 @@ local SpeedToggle = PlayerTab:CreateToggle({
 local SpeedSlider = PlayerTab:CreateSlider({
 	Name = "Speed",
 	Range = {1, 100},
-	Increment = 1,
+	Increment = 0.1,
 	Suffix = "Walkspeed",
 	CurrentValue = 10,
 	Flag = "WalkspeedSliderFlag", 
@@ -715,13 +715,13 @@ getgenv().Settings3 = {
 
 }
 
-local MiscTab = Window:CreateTab("Misc⚙️", nil) -- Title, Image
+local MiscTab = Window:CreateTab("Misc |⚙️", nil) -- Title, Image
 
 
 local GUISection = MiscTab:CreateSection("GUI (STFO)")
 
 local GuiToggle = MiscTab:CreateToggle({
-	Name = "hide GUI",
+	Name = "hide GUI (Dev debugger ignore) ",
 	CurrentValue = false,
 	Flag = "guiHideToggle",
 	Callback = function(HideGuiToggleValue)
@@ -739,12 +739,12 @@ local Button = MiscTab:CreateButton({
 	Callback = function()
 		if game.PlaceId == 6361937392 or game.PlaceId == 6356763358 or game.PlaceId == 11515893037 or game.PlaceId == 13594360346 then
 			local ReplicatedStorage = game:GetService("ReplicatedStorage")
-			ReplicatedStorage.Remotes.SetPlatform:FireServer(false, true)
+			ReplicatedStorage.Remotes.SetPlatform:FireServer(false, false)
 			
 			Rayfield:Notify({
 				Title = "Reset!",
 				Content = "Reset to apply.",
-				Duration = 0.5,
+				Duration = 2,
 				Image = nil,
 			})
 		end
@@ -761,7 +761,7 @@ local Button = MiscTab:CreateButton({
 			Rayfield:Notify({
 				Title = "Reset!",
 				Content = "Reset to apply.",
-				Duration = 0.5,
+				Duration = 2,
 				Image = nil,
 			})
 		end
@@ -773,12 +773,12 @@ local Button = MiscTab:CreateButton({
 	Callback = function()
 		if game.PlaceId == 6361937392 or game.PlaceId == 6356763358 or game.PlaceId == 11515893037 or game.PlaceId == 13594360346 then
 			local ReplicatedStorage = game:GetService("ReplicatedStorage")
-			ReplicatedStorage.Remotes.SetPlatform:FireServer(false, false)
+			ReplicatedStorage.Remotes.SetPlatform:FireServer(false, true)
 
 			Rayfield:Notify({
 				Title = "Reset!",
 				Content = "Reset to apply.",
-				Duration = 0.5,
+				Duration = 2,
 				Image = nil,
 			})
 		end
