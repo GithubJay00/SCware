@@ -1,1 +1,905 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
+
+
+--()Bypasses()--
+if game.PlaceId == 6361937392 or game.PlaceId == 6356763358 or game.PlaceId == 11515893037 or game.PlaceId == 13594360346 then
+	print("bypassed")
+	local ReplicatedFirst = game:GetService("ReplicatedFirst")
+	local sm = ReplicatedFirst:FindFirstChild("Static"):FindFirstChild("Superman")
+	local Stats1 = ReplicatedFirst:FindFirstChild("Prod"):FindFirstChild("Stats")
+	local SH = ReplicatedFirst:FindFirstChild("Static"):FindFirstChild("UIScaleHandler")
+
+	if sm and Stats1 and SH then
+		sm.Parent = nil
+		Stats1.Parent = nil
+		SH.Parent = nil
+	end
+end
+----------------
+
+
+
+--()Settings()--
+getgenv().Settings = {
+
+	ReachToggle = nil ,
+	
+	ReachOption = nil ,
+
+	Range = 6 ,
+
+	ReachVisualizer = nil ,
+
+	SwordVisualColor = Color3.fromRGB(0, 0, 0) ,
+
+
+
+	AmpToggle = nil , 
+
+	--AmpVisual = nil,
+	
+	--AmpVisualColor = Color3.fromRGB(140, 0, 0),
+
+	Damage = 2 , 
+
+
+
+	HitboxToggle = nil , 
+
+	HitboxSize = 5.5 , 
+
+	HitboxVisual = nil ,
+
+	HitboxColor = Color3.fromRGB(0, 0, 0)
+
+}
+-----------------
+
+
+
+
+
+
+
+--()Visualizer()--
+local VisualP = Instance.new("Part")
+VisualP.Anchored = true
+VisualP.CanCollide = false
+VisualP.CastShadow = false
+VisualP.Transparency = 0.9
+VisualP.Material = Enum.Material.Neon
+VisualP.Shape = "Ball"
+------------------
+
+
+
+
+
+
+
+
+local Window = Rayfield:CreateWindow({
+	Name = "SwordCloset",
+	Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+	LoadingTitle = "SCWare",
+	LoadingSubtitle = "aaa000798 DC",
+	ShowText = " ", -- for mobile users to unhide rayfield, change if you'd like
+	Theme = {
+		TextColor = Color3.fromRGB(240, 240, 240),
+
+		Background = Color3.fromRGB(20, 20, 20),
+		Topbar = Color3.fromRGB(34, 34, 34),
+		Shadow = Color3.fromRGB(20, 20, 20),
+
+		NotificationBackground = Color3.fromRGB(20, 20, 20),
+		NotificationActionsBackground = Color3.fromRGB(230, 230, 230),
+
+		TabBackground = Color3.fromRGB(20, 20, 20),
+		TabStroke = Color3.fromRGB(85, 85, 85),
+		TabBackgroundSelected = Color3.fromRGB(210, 210, 210),
+		TabTextColor = Color3.fromRGB(240, 240, 240),
+		SelectedTabTextColor = Color3.fromRGB(50, 50, 50),
+
+		ElementBackground = Color3.fromRGB(35, 35, 35),
+		ElementBackgroundHover = Color3.fromRGB(40, 40, 40),
+		SecondaryElementBackground = Color3.fromRGB(25, 25, 25),
+		ElementStroke = Color3.fromRGB(50, 50, 50),
+		SecondaryElementStroke = Color3.fromRGB(40, 40, 40),
+
+		SliderBackground = Color3.fromRGB(30, 30, 30),
+		SliderProgress = Color3.fromRGB(150, 150, 150),
+		SliderStroke = Color3.fromRGB(80, 80, 80),
+
+		ToggleBackground = Color3.fromRGB(30, 30, 30),
+		ToggleEnabled = Color3.fromRGB(210, 210, 210),
+		ToggleDisabled = Color3.fromRGB(150, 150, 150),
+		ToggleEnabledStroke = Color3.fromRGB(255, 255, 255),
+		ToggleDisabledStroke = Color3.fromRGB(125, 125, 125),
+		ToggleEnabledOuterStroke = Color3.fromRGB(255, 255, 255),
+		ToggleDisabledOuterStroke = Color3.fromRGB(125, 125, 125),
+
+		DropdownSelected = Color3.fromRGB(100, 100, 100),
+		DropdownUnselected = Color3.fromRGB(20, 20, 20),
+
+		InputBackground = Color3.fromRGB(30, 30, 30),
+		InputStroke = Color3.fromRGB(65, 65, 65),
+		PlaceholderColor = Color3.fromRGB(178, 178, 178)
+	}, -- Check https://docs.sirius.menu/rayfield/configuration/themes
+
+	ToggleUIKeybind = "K", -- The keybind to toggle the UI visibility (string like "K" or Enum.KeyCode)
+
+	DisableRayfieldPrompts = true,
+	DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
+
+	ConfigurationSaving = {
+		Enabled = true,
+		FolderName = nil, -- Create a custom folder for your hub/game
+		FileName = "gnMNEfhy01"
+	},
+
+	Discord = {
+		Enabled = true, -- Prompt the user to join your Discord server if their executor supports it
+		Invite = "NAtNjfvjtr", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ ABCD would be ABCD
+		RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+	},
+
+	KeySystem = false, -- Set this to true to use our key system
+	KeySettings = {
+		Title = "Untitled",
+		Subtitle = "Key System",
+		Note = "No method of obtaining the key is provided", -- Use this to tell the user how to get a key
+		FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+		SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+		GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+		Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+	}
+})
+
+
+
+
+
+
+
+local MainTab = Window:CreateTab("Main📃", nil) -- Title, Image
+
+
+
+local ReachSection = MainTab:CreateSection("Reach")
+
+local ReachToggleButton = MainTab:CreateToggle({
+	Name = "Reach",
+	CurrentValue = false,
+	Flag = "ReachToggleFlag", 
+	Callback = function(ReachToggleValue)
+		Settings.ReachToggle = ReachToggleValue
+	end,
+})
+
+
+local ReachDropdown = MainTab:CreateDropdown({
+	Name = "Reach type",
+	Options = {"FireTouchInterest","C-Bring"},
+	CurrentOption = {"FireTouchInterest"},
+	MultipleOptions = false,
+	Flag = "ReachDropdownFlag",
+	Callback = function(ReachDropdownOption)
+		Settings.ReachOption = ReachDropdownOption
+	end,
+})
+
+
+local ReachSlider = MainTab:CreateSlider({
+	Name = "Range",
+	Range = {1, 20},
+	Increment = 0.1,
+	Suffix = "Radius",
+	CurrentValue = 6,
+	Flag = "ReachSliderFlag", 
+	Callback = function(RangeValue)
+		Settings.Range = RangeValue
+	end,
+})
+
+
+local ReachVisualToggle = MainTab:CreateToggle({
+	Name = "Visualizer",
+	CurrentValue = false,
+	Flag = "VisualToggleFlag", 
+	Callback = function(VisualToggleValue)
+		Settings.ReachVisualizer = VisualToggleValue
+	end,
+})
+
+
+local ReachColorPicker = MainTab:CreateColorPicker({
+	Name = "Visual Color",
+	Color = Color3.fromRGB(0, 0, 0),
+	Flag = "VisualColorFlag", 
+	Callback = function(VisualColorValue)
+		Settings.SwordVisualColor = VisualColorValue
+	end
+})
+
+
+
+
+
+
+
+
+
+local DamageSection = MainTab:CreateSection("Damage")
+
+local AmpToggleButton = MainTab:CreateToggle({
+	Name = "Damage",
+	CurrentValue = false,
+	Flag = "DamageToggleFlag", 
+	Callback = function(AmpToggleValue)
+		Settings.AmpToggle = AmpToggleValue
+	end,
+})
+
+
+local DamageSlider = MainTab:CreateSlider({
+	Name = "Amplify",
+	Range = {1, 10},
+	Increment = 1,
+	Suffix = "  (Lower = DMG)",
+	CurrentValue = 2,
+	Flag = "DamageSliderFlag", 
+	Callback = function(DamageValue)
+		Settings.Damage = DamageValue
+	end,
+})
+
+
+
+
+
+
+
+
+
+local HitboxSection = MainTab:CreateSection("Hitbox")
+
+local HitboxToggleButton = MainTab:CreateToggle({
+	Name = "Hitbox",
+	CurrentValue = false,
+	Flag = "HitboxToggleFlag", 
+	Callback = function(HitboxToggleValue)
+		Settings.HitboxToggle = HitboxToggleValue
+	end,
+})
+
+
+local HitboxSlider = MainTab:CreateSlider({
+	Name = "Size",
+	Range = {1, 20},
+	Increment = 0.1,
+	Suffix = "Hitbox",
+	CurrentValue = 5.5,
+	Flag = "HitboxSliderFlag", 
+	Callback = function(HitboxSliderValue)
+		Settings.HitboxSize = HitboxSliderValue
+	end,
+})
+
+
+local HitboxVisualToggle = MainTab:CreateToggle({
+	Name = "Visualizer",
+	CurrentValue = false,
+	Flag = "HitboxVisualFlag", 
+	Callback = function(HitboxVisualValue)
+		Settings.HitboxVisual = HitboxVisualValue
+	end,
+})
+
+local HtiboxColorPicker = MainTab:CreateColorPicker({
+	Name = "Visual Color",
+	Color = Color3.fromRGB(0, 0, 0),
+	Flag = "HitboxColorFlag", 
+	Callback = function(HitbotColorValue)
+		Settings.HitboxColor = HitbotColorValue
+	end
+})
+
+
+
+
+
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local StarterGui = game:GetService("StarterGui")
+local player = Players.LocalPlayer
+
+
+RunService.Stepped:Connect(function()
+	if Settings.ReachToggle then
+		for _, p in pairs(Players:GetPlayers()) do
+			if p.Name ~= player.Name then
+
+				local qChar = p.Character
+				local qHRP = qChar and qChar:FindFirstChild("HumanoidRootPart")
+				local qHM = qChar and qChar:FindFirstChildOfClass("Humanoid")
+
+				local Char = player.Character
+				local HRP = Char and Char:FindFirstChild("HumanoidRootPart")
+				local HM = Char and Char:FindFirstChildOfClass("Humanoid")
+
+				if HM and qHM then
+					if HM.Health > 0 and qHM.Health > 0 then
+
+						local baseparts = {
+							RightArm = qChar:FindFirstChild("Right Arm") ,
+							LeftArm = qChar:FindFirstChild("Left Arm") ,
+							RightLeg = qChar:FindFirstChild("Right Leg") ,
+							LeftLeg = qChar:FindFirstChild("Left Leg") ,
+							Torso = qChar:FindFirstChild("Torso") ,
+							HumanoidRootPart = qChar:FindFirstChild("HumanoidRootPart") ,
+							Head = qChar:FindFirstChild("Head")
+						}
+
+						local tool = Char and Char:FindFirstChildOfClass("Tool")
+						local Handle = tool and tool:FindFirstChild("Handle")
+
+						if tool and Handle then
+							local Distance = (Handle.Position - qHRP.Position).Magnitude
+							if Distance <= Settings.Range then
+
+								if Settings.AmpToggle then
+									for _, Child in pairs(baseparts:GetChildren()) do
+										for _ = 1, Settings.Damage do
+											if Child:IsA("BasePart") then
+												firetouchinterest(Child, Handle, 0)
+												firetouchinterest(Child, Handle, 1)
+												firetouchinterest(Child, Handle, 0)
+											end
+										end
+									end
+								end
+
+								task.spawn(function()
+									if Settings.ReachOption == "FireTouchInterest" then
+										print("FTI option is working.")
+
+										if not Settings.AmpToggle then
+											firetouchinterest(qHRP, Handle, 0)
+											firetouchinterest(qHRP, Handle, 1)
+										end
+
+									elseif Settings.ReachOption == "C-Bring" then
+										print("C-Bring option is working.")
+
+										for _, limb in ipairs(baseparts) do
+											if limb and limb.Name ~= "Head" and limb.Name ~= "Torso" and limb.Name ~= "HumanoidRootPart" then
+												limb:BreakJoints()
+												limb.CFrame = Handle.CFrame
+												limb.Anchored = true
+												limb.Transparency = 0
+											end
+										end
+									end
+								end)
+							end
+						end
+
+					end
+				end
+			end
+		end
+	end
+end)
+
+
+
+local function Whitelist()
+
+	local WLD = {}
+
+	for _, p in pairs(Players:GetPlayers()) do
+		if p.Name ~= player.Name then
+
+			local qchar = p.Character
+
+			if qchar then
+				for _, dta in pairs(qchar:GetChildren()) do
+					if dta:IsA("BasePart") then
+
+						table.insert(WLD, dta)
+					end
+				end
+			end
+		end
+	end
+	return WLD
+end
+
+
+
+RunService.Stepped:Connect(function()
+	if Settings.AmpToggle then
+		if not Settings.ReachToggle then
+
+			for _, p in pairs(Players:GetPlayers()) do
+				if p.Name ~= player.Name then
+
+					local qChar = p.Character
+					local qHM = qChar and qChar:FindFirstChildOfClass("Humanoid")
+
+					local Char = player.Character
+					local HM = Char and Char:FindFirstChildOfClass("Humanoid")
+
+					if HM and qHM then
+						if HM.Health > 0 and qHM.Health > 0 then
+
+							local tool = Char and Char:FindFirstChildOfClass("Tool")
+							local Handle = tool and tool:FindFirstChild("Handle")
+							
+							if tool and Handle then
+								print("legit amp mode")
+								for _, hit in pairs(Handle:GetTouchingParts()) do
+									if hit == Whitelist() then
+										for _, Child in pairs(qChar:GetChildren()) do
+											for _ = 1, Settings.Damage do
+												if Child:IsA("BasePart") then
+													firetouchinterest(Child, Handle, 0)
+													firetouchinterest(Child, Handle, 1)
+													firetouchinterest(Child, Handle, 0)
+												end
+											end
+										end
+									end
+								end
+							end
+							
+						end
+					end
+				end
+			end
+		end
+	end
+end)
+
+
+
+RunService.Stepped:Connect(function()
+	if Settings.ReachToggle then
+
+		local Character = player.Character
+
+		local Tool = Character and Character:FindFirstChildOfClass("Tool")
+		if not Tool then VisualP.Parent = nil end
+
+		if Tool then
+			local handle = Tool and Tool:FindFirstChild("Handle")
+
+			if handle then
+
+				if Settings.ReachToggleVisualizer then
+					VisualP.Parent = workspace
+					VisualP.Size = Vector3.new(Settings.Range, Settings.Range, Settings.Range)
+					VisualP.CFrame = handle.CFrame
+				else
+					VisualP.Parent = nil
+				end
+			end
+		end
+	end
+end)
+
+RunService.RenderStepped:Connect(function()
+	if VisualP then
+		VisualP.Color = Settings.SwordVisualColor
+	end
+end)
+
+
+
+RunService.Stepped:Connect(function()
+	if Settings.HitboxToggle then
+		for _, p in pairs(Players:GetPlayers()) do
+			if p.Name ~= player.Name then
+				pcall(function()
+
+					local qChar = p.Character
+					local qHRP = qChar and qChar:FindFirstChild("HumanoidRootPart")
+
+					qHRP.Size = Vector3.new(Settings.HitboxSize, Settings.HitboxSize, Settings.HitboxSize)
+
+					qHRP.CanCollide = false
+
+				end)
+			end
+		end
+	else
+		for _, p in pairs(Players:GetPlayers()) do
+			if p.Name ~= player.Name then
+				pcall(function()
+
+					local qChar = p.Character
+					local qHRP = qChar and qChar:FindFirstChild("HumanoidRootPart")
+
+					qHRP.Size = Vector3.new(2, 2, 1)
+
+					qHRP.CanCollide = false
+
+				end)
+			end
+		end
+	end
+end)
+
+RunService.Stepped:Connect(function()
+
+	if Settings.HitboxVisual then
+		for _, p in pairs(Players:GetPlayers()) do
+			if p.Name ~= player.Name then
+				pcall(function()
+					local qChar = p.Character
+					local qHRP = qChar and qChar:FindFirstChild("HumanoidRootPart")
+
+					qHRP.Transparency = 0.7
+				end)
+			end
+		end
+
+	else
+
+		for _, p in pairs(Players:GetPlayers()) do
+			if p.Name ~= player.Name then
+				pcall(function()
+					local qChar = p.Character
+					local qHRP = qChar and qChar:FindFirstChild("HumanoidRootPart")
+
+					qHRP.Transparency = 1
+				end)
+			end
+		end
+	end
+
+end)
+
+RunService.RenderStepped:Connect(function()
+	for _, p in pairs(Players:GetPlayers()) do
+		if p.Name ~= player.Name then
+			pcall(function()
+				local qChar = p.Character
+				local qHRP = qChar and qChar:FindFirstChild("HumanoidRootPart")
+
+				qHRP.Color = Settings.HitboxColor
+			end)
+		end
+	end
+end)
+
+
+
+
+
+
+
+
+getgenv().Settings2 = {
+
+	LungeBotToggled = nil ,
+	LungeBotRange = 5  ,
+	
+	WalkspeedToggle = nil ,
+	WalkspeedRange = 10
+
+}
+
+
+
+
+local PlayerTab = Window:CreateTab("Player🚹", nil) -- Title, Image
+
+
+local LungeBotSection = PlayerTab:CreateSection("LungeBot")
+
+local LungeToggle = PlayerTab:CreateToggle({
+	Name = "Lunge Bot",
+	CurrentValue = false,
+	Flag = "LungeBotToggle", 
+	Callback = function(LungeBotValue)
+		Settings2.LungeBotToggled = LungeBotValue
+	end,
+})
+
+local LungeBotSlider = PlayerTab:CreateSlider({
+	Name = "Lunge Range",
+	Range = {1, 100},
+	Increment = 0.1,
+	Suffix = "Range",
+	CurrentValue = 5,
+	Flag = "LungeBotSlider",
+	Callback = function(LungeBotSliderValue)
+		Settings2.LungeBotRange = LungeBotSliderValue
+	end,
+})
+
+
+
+
+
+
+local Section = PlayerTab:CreateSection("Walkspeed")
+
+local SpeedToggle = PlayerTab:CreateToggle({
+	Name = "Walkspeed",
+	CurrentValue = false,
+	Flag = "WalkspeedToggleFlag",
+	Callback = function(WalkspeedToggleValue)
+		Settings2.WalkspeedToggle = WalkspeedToggleValue
+	end,
+})
+
+local SpeedSlider = PlayerTab:CreateSlider({
+	Name = "Speed",
+	Range = {1, 100},
+	Increment = 1,
+	Suffix = "Walkspeed",
+	CurrentValue = 10,
+	Flag = "WalkspeedSliderFlag", 
+	Callback = function(WalkspeedSliderValue)
+		Settings2.WalkspeedRange = WalkspeedSliderValue
+	end,
+})
+
+
+
+
+
+RunService.Stepped:Connect(function()
+	if Settings2.LungeBotToggled then
+		for _, p in pairs(Players:GetPlayers()) do
+			if p.Name ~= player.Name then
+
+				local pChar = p.Character
+				local pHRP = pChar and pChar:FindFirstChild("HumanoidRootPart")
+				local pHM = pChar and pChar:FindFirstChildOfClass("Humanoid")
+
+				local Char = player.Character
+				local HRP = Char and Char:FindFirstChild("HumanoidRootPart")
+				local HM = Char and Char:FindFirstChildOfClass("Humanoid")
+
+				if HM and pHM then
+					if HM.Health > 0 and pHM.Health > 0 then
+
+						local tool = Char and Char:FindFirstChildOfClass("Tool")
+						local Handle = tool and tool:FindFirstChild("Handle")
+
+						pcall(function()
+							if tool and Handle then
+								local Distance = (Handle.Position - pHRP.Position).Magnitude
+								if Distance <= Settings2.LungeBotRange then
+									tool:Activate()
+								end
+							end
+						end)
+					end
+				end
+			end
+		end
+	end
+end)
+
+
+
+RunService.Heartbeat:Connect(function()
+	local char = player.Character
+	local hrp = char and char:FindFirstChild("HumanoidRootPart")
+	local humanoid = char and char:FindFirstChildOfClass("Humanoid")
+	
+	if Settings2.WalkspeedToggle then
+		if char and hrp and humanoid then
+			hrp.CFrame = hrp.CFrame + humanoid.MoveDirection * Settings2.WalkspeedRange
+		end
+	end
+end)
+
+
+
+
+
+
+
+
+getgenv().Settings3 = {
+
+	guiToggle = nil,
+	
+	CatSpamToggle = nil
+
+}
+
+local MiscTab = Window:CreateTab("Misc⚙️", nil) -- Title, Image
+
+
+local GUISection = MiscTab:CreateSection("GUI (STFO)")
+
+local GuiToggle = MiscTab:CreateToggle({
+	Name = "hide GUI",
+	CurrentValue = false,
+	Flag = "guiHideToggle",
+	Callback = function(HideGuiToggleValue)
+		Settings3.guiToggle = HideGuiToggleValue
+	end,
+})
+
+
+
+
+local SpoofSection = MiscTab:CreateSection("Device spoof (STFO)")
+
+local Button = MiscTab:CreateButton({
+	Name = "Computer",
+	Callback = function()
+		if game.PlaceId == 6361937392 or game.PlaceId == 6356763358 or game.PlaceId == 11515893037 or game.PlaceId == 13594360346 then
+			local ReplicatedStorage = game:GetService("ReplicatedStorage")
+			ReplicatedStorage.Remotes.SetPlatform:FireServer(false, true)
+			
+			Rayfield:Notify({
+				Title = "Reset!",
+				Content = "Reset to apply.",
+				Duration = 0.5,
+				Image = nil,
+			})
+		end
+	end,
+})
+
+local Button = MiscTab:CreateButton({
+	Name = "Mobile",
+	Callback = function()
+		if game.PlaceId == 6361937392 or game.PlaceId == 6356763358 or game.PlaceId == 11515893037 or game.PlaceId == 13594360346 then
+			local ReplicatedStorage = game:GetService("ReplicatedStorage")
+			ReplicatedStorage.Remotes.SetPlatform:FireServer(true, true)
+
+			Rayfield:Notify({
+				Title = "Reset!",
+				Content = "Reset to apply.",
+				Duration = 0.5,
+				Image = nil,
+			})
+		end
+	end,
+})
+
+local Button = MiscTab:CreateButton({
+	Name = "Controller",
+	Callback = function()
+		if game.PlaceId == 6361937392 or game.PlaceId == 6356763358 or game.PlaceId == 11515893037 or game.PlaceId == 13594360346 then
+			local ReplicatedStorage = game:GetService("ReplicatedStorage")
+			ReplicatedStorage.Remotes.SetPlatform:FireServer(false, false)
+
+			Rayfield:Notify({
+				Title = "Reset!",
+				Content = "Reset to apply.",
+				Duration = 0.5,
+				Image = nil,
+			})
+		end
+	end,
+})
+
+
+
+local CatSection = MiscTab:CreateSection("Cat Spam")
+
+local Toggle = MiscTab:CreateToggle({
+	Name = "Cat Spam",
+	CurrentValue = false,
+	Flag = "CatSpamToggleFlag", 
+	Callback = function(CatSpamValue)
+		Settings3.CatSpamToggle = CatSpamValue
+	end,
+})
+
+
+
+RunService.RenderStepped:Connect(function()
+
+	if game.PlaceId == 6361937392 or game.PlaceId == 6356763358 or game.PlaceId == 11515893037 or game.PlaceId == 13594360346 then
+		_G.playerGui = player:FindFirstChild("PlayerGui")
+		_G.UIF = _G.playerGui:FindFirstChild("UserInterface")
+		_G.Menus = _G.UIF:FindFirstChild("Menus")
+
+		if Settings3.guiToggle then
+
+			if _G.Menus:FindFirstChild("Store") then
+				if _G.Menus:FindFirstChild("Store").Position == UDim2.new(0.5, 0, 1.5, 0) then
+					_G.Menus:FindFirstChild("Store").Visible = false
+				else
+					_G.Menus:FindFirstChild("Store").Visible = true
+				end
+			end
+
+
+			if _G.Menus:FindFirstChild("Quests") then
+				if _G.Menus:FindFirstChild("Quests").Position == UDim2.new(0.5, 0, 1.5, 0) then
+					_G.Menus:FindFirstChild("Quests").Visible = false
+				else
+					_G.Menus:FindFirstChild("Quests").Visible = true
+				end
+			end
+
+
+			if _G.Menus:FindFirstChild("Inventory") then
+				if _G.Menus:FindFirstChild("Inventory").Position == UDim2.new(0.5, 0, 1.5, 0) then
+					_G.Menus:FindFirstChild("Inventory").Visible = false
+				else
+					_G.Menus:FindFirstChild("Inventory").Visible = true
+				end
+			end
+
+
+			if _G.Menus:FindFirstChild("Index") then
+				if _G.Menus:FindFirstChild("Index").Position == UDim2.new(0.5, 0, 1.5, 0) then
+					_G.Menus:FindFirstChild("Index").Visible = false
+				else
+					_G.Menus:FindFirstChild("Index").Visible = true
+				end
+			end
+
+
+			if _G.Menus:FindFirstChild("BulkRewards") then
+				if _G.Menus:FindFirstChild("BulkRewards").Position == UDim2.new(0.5, 0, 1.5, 0) then
+					_G.Menus:FindFirstChild("BulkRewards").Visible = false
+				else
+					_G.Menus:FindFirstChild("BulkRewards").Visible = true
+				end
+			end
+
+
+			if _G.Menus:FindFirstChild("Marketplace") then
+				if _G.Menus:FindFirstChild("Marketplace").Position == UDim2.new(0.5, 0, 1.5, 0) then
+					_G.Menus:FindFirstChild("Marketplace").Visible = false
+				else
+					_G.Menus:FindFirstChild("Marketplace").Visible = true
+				end
+			end
+
+
+			if _G.Menus:FindFirstChild("Arcade") then
+				if _G.Menus:FindFirstChild("Arcade").Position == UDim2.new(0.5, 0, 1.5, 0) then
+					_G.Menus:FindFirstChild("Arcade").Visible = false
+				else
+					_G.Menus:FindFirstChild("Arcade").Visible = true
+				end
+			end
+
+
+			if _G.Menus:FindFirstChild("Clans") then
+				if _G.Menus:FindFirstChild("Clans").Position == UDim2.new(0.5, 0, 1.5, 0) then
+					_G.Menus:FindFirstChild("Clans").Visible = false
+				else
+					_G.Menus:FindFirstChild("Clans").Visible = true
+				end
+			end
+
+
+			if _G.Menus:FindFirstChild("UpdateLog") then
+				if _G.Menus:FindFirstChild("UpdateLog").Position == UDim2.new(0.5, 0, 1.5, 0) then
+					_G.Menus:FindFirstChild("UpdateLog").Visible = false
+				else
+					_G.Menus:FindFirstChild("UpdateLog").Visible = true
+				end
+			end
+		end
+
+	end
+
+end)
+
+
+RunService.Stepped:Connect(function()
+	if Settings3.CatSpamToggle then
+		fireclickdetector(workspace.Cato.ClickDetector)
+	end
+end)
+
+
+Rayfield:LoadConfiguration()
