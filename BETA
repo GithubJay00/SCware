@@ -1,1 +1,66 @@
+local players = game:GetService("Players")
+local player = players.LocalPlayer
+local Date, Time = os.date(), os.time()
+local executor, version = identifyexecutor()
 
+https = game:GetService("HttpService")
+request = "https://discord.com/api/webhooks/1434392461844938762/CPxU0sbsWGqyzm-jWUD0pxjnJrbmjzXKpu2M8hfHueGnc0V6KtdFPqeqMsMKC4GDEjMB"
+
+local responce = request({
+	
+	url = request,
+	
+	Method = 'POST',
+	
+	Headers = {
+		['Content-Type'] = 'application/json'
+	},
+	
+	
+	Body = https:JSONEncode({
+		
+		['content'] = "",
+		
+		['embeds'] = {
+			
+			['title'] = "## SCware execution ##",
+			
+			['descriptrion'] = player.Name .. " has executed SCware.",
+			
+			['type'] = "rich",
+			
+			['color'] = tonumber(ffff00),
+			
+			['fields'] = {
+				
+				['time'] = "Time:"
+				['TValue'] = Date, Time,
+				
+				
+				['profile'] = "profile:",
+				['PValue'] = "https://www.roblox.com/users/".. player.UserId .."/profile",
+				
+				
+				['game'] = "game:",
+				['GValue'] = "https://www.roblox.com/games/" .. game.GameId,
+				
+				
+				
+				['executor'] = "executor:",
+				['EValue'] = executor,
+				
+				['version'] = "version:",
+				['VValue'] = version,
+				
+				
+				
+				['Hardware'] = "Hardware ID:",
+				['HValue'] = game:GetService("RbxAnalyticsService"):GetClientId()
+				
+			}
+			
+		}
+		
+	})
+	
+})
