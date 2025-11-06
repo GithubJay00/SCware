@@ -181,11 +181,12 @@ local ReachToggleButton = MainTab:CreateToggle({
 local ReachDropdown = MainTab:CreateDropdown({
 	Name = "Reach type",
 	Options = {"FireTouchInterest","C-Bring"},
-	CurrentOption = {"FireTouchInterest"},
+	CurrentOption = "FireTouchInterest",
 	MultipleOptions = false,
 	Flag = "ReachDropdownFlag",
 	Callback = function(ReachDropdownOption)
 		Settings.ReachOption = ReachDropdownOption
+		print(Settings.ReachOption)
 	end,
 })
 
