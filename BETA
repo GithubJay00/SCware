@@ -1,5 +1,9 @@
-local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+if not game:IsLoaded() then
+	game.Loaded:Wait()
+end
 
+local Logger = loadstring(game:HttpGet("https://raw.githubusercontent.com/GithubJay00/ScriptLogger/refs/heads/main/Template"))()
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 
 --()Bypasses()--
@@ -25,7 +29,7 @@ getgenv().Settings = {
 
 	ReachToggle = nil ,
 	
-	ReachOption = nil ,
+	--ReachOption = nil ,
 
 	Range = 6 ,
 
@@ -169,7 +173,7 @@ local MainTab = Window:CreateTab("Main |📃", nil) -- Title, Image
 local ReachSection = MainTab:CreateSection("Reach")
 
 local ReachToggleButton = MainTab:CreateToggle({
-	Name = "Reach",
+	Name = "Reach (FTI)",
 	CurrentValue = false,
 	Flag = "ReachToggleFlag", 
 	Callback = function(ReachToggleValue)
@@ -178,7 +182,7 @@ local ReachToggleButton = MainTab:CreateToggle({
 })
 
 
-local ReachDropdown = MainTab:CreateDropdown({
+--[[local ReachDropdown = MainTab:CreateDropdown({
 	Name = "Reach type",
 	Options = {"FireTouchInterest","C-Bring"},
 	CurrentOption = "FireTouchInterest",
@@ -188,7 +192,7 @@ local ReachDropdown = MainTab:CreateDropdown({
 		Settings.ReachOption = ReachDropdownOption
 		print(Settings.ReachOption)
 	end,
-})
+})]]
 
 
 local ReachSlider = MainTab:CreateSlider({
@@ -359,30 +363,10 @@ RunService.Stepped:Connect(function()
 											end
 										end
 									end
+								else
+									firetouchinterest(qHRP, Handle, 0)
+									firetouchinterest(qHRP, Handle, 1)
 								end
-
-								task.spawn(function()
-									if Settings.ReachOption == "FireTouchInterest" then
-										print("FTI option is working.")
-
-										if not Settings.AmpToggle then
-											firetouchinterest(qHRP, Handle, 0)
-											firetouchinterest(qHRP, Handle, 1)
-										end
-
-									elseif Settings.ReachOption == "C-Bring" then
-										print("C-Bring option is working.")
-
-										for _, limb in ipairs(baseparts) do
-											if limb and limb.Name ~= "Head" and limb.Name ~= "Torso" and limb.Name ~= "HumanoidRootPart" then
-												limb:BreakJoints()
-												limb.CFrame = Handle.CFrame
-												limb.Anchored = true
-												limb.Transparency = 0
-											end
-										end
-									end
-								end)
 							end
 						end
 
